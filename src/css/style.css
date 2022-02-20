@@ -1,0 +1,8 @@
+.jq_fuwatto {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.jq_fuwatto-show {
+  opacity: 1;
+}
