@@ -4,8 +4,9 @@
 
 
 ## What is jqFuwatto?
+
+jqFuwatto is jQuery plugin, enables to move element, images, or blocks moves "Fuwatto".
 "Fuwatto" is Japanese onomatopoeia of "things moves fluffy".  
-Plugin enables to move element, images, or blocks moves "Fuwatto".
 
 ---
 
