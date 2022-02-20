@@ -1,0 +1,13 @@
+on:
+  push:
+    tags:
+      - '*'
+
+name: Build GitHub Pages Docs
+
+jobs:
+  build:
+    name: Build GitHub Pages Docs
+    runs-on: ubuntu-latest
+    steps:
+      - run: npm run build
