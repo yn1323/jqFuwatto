@@ -14,6 +14,6 @@ jobs:
           cache: 'npm'
       - run: |
           curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-          npm install
+          npm ci
           sh ./init-wasm.sh
           npm run build
