@@ -16,7 +16,10 @@ jqFuwatto is jQuery plugin, enables to move element, images, or blocks moves "Fu
 1. Paste jqFuwatto Script
    ```html
      <head>
-        <script src="jqFuwatto.umd.js" defer></script>
+        // Use CND
+        <script src="https://raw.githubusercontent.com/yn1323/jqFuwatto/master/dist/jqFuwatto.umd.js" defer></script>
+        // Use downloaded module(https://github.com/yn1323/jqFuwatto/releases)
+        <script src="https://raw.githubusercontent.com/yn1323/jqFuwatto/master/dist/jqFuwatto.umd.js" defer></script>
      </head>
    ```
 2. Call jqFuwatto after DOM gets ready
@@ -24,8 +27,7 @@ jqFuwatto is jQuery plugin, enables to move element, images, or blocks moves "Fu
    $(someSelector).fuwatto();
    ```
 
-
-### jQuery version
+### Options
 
 
 ⚠️ Height is required
@@ -33,6 +35,18 @@ jqFuwatto is jQuery plugin, enables to move element, images, or blocks moves "Fu
 ---
 
 ## For Contributers
+### Setup
+1. Install
+   ```sh
+   git clone git@github.com:yn1323/jqFuwatto.git
+   cd jqFuwatto
+   npm i
+   ```
+2. Commands
+   - Launch develop mode: `npm run dev`
+   - Build document(GitHub Page): `npm run build:doc`
+   - Bundle modules: `npm run build:bundle`
+   - Build document & Bundle modules: `npm run build`
 
 ---
 
