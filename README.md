@@ -12,12 +12,16 @@ jqFuwatto is jQuery plugin, enables to move element, images, or blocks moves "Fu
 
 ![Gif](https://raw.githubusercontent.com/yn1323/jqFuwatto/master/assets/gif/jqFuwatto.gif)
 
----
-
-### How to use
+## How to use
+1. Load jQuery Script
 1. Load CDN or downloaded jqFuwatto
    ```html
      <head>
+        <script
+            src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+            integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+            crossorigin="anonymous"
+        ></script>
         <!-- Use CND -->
         <script src="https://raw.githubusercontent.com/yn1323/jqFuwatto/master/dist/jqFuwatto.umd.js" defer></script>
         <!-- Use downloaded module(https://github.com/yn1323/jqFuwatto/releases) -->
@@ -29,9 +33,9 @@ jqFuwatto is jQuery plugin, enables to move element, images, or blocks moves "Fu
    $(someSelector).fuwatto();
    ```
 
-### Options
+## Options
 ```js
-$(someSelector).fuwatto({
+$(jQuerySelector).fuwatto({
    duration: 1000,
    slde: 'right-left',
    distance: 500,
@@ -44,7 +48,7 @@ $(someSelector).fuwatto({
 | side     | `string` | ''      | Way to slide.<br>'left-right', 'right-left', 'top-bottom', 'bottom-top' are accepted.<br>'' won't slide. | 
 | distance | `number` | 500     | Distance to slide the element.(px)                                                                       | 
 
-⚠️ If using slide option, elemnt shoud have height & width.
+⚠️ If using slide option, element should have height & width.(Especially for image)
 
 ---
 
@@ -63,6 +67,22 @@ $(someSelector).fuwatto({
    - Build document & Bundle modules: `npm run build`
 3. Static html, js test
    - Open statc.html with Live Server
+
+---
+
+## Support
+### Checked jQuery Version
+- 3.6.0
+- 2.2.4
+- 1.12.4
+
+Other versions may work properly.
+
+### browsers
+- Chrome ✅
+- IE ❌
+- Firefox ❓
+- Safari ❓
 
 ---
 
