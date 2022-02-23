@@ -12,16 +12,15 @@ jqFuwatto is jQuery plugin, enables to move element, images, or blocks moves "Fu
 
 ---
 
-## For Developer
-### jQuery version
 ### How to use
+### jQuery version
+
 
 ⚠️ Height is required
 
 ---
 
-## For Contributer
-### How to develop
+## For Contributers
 
 ---
 
