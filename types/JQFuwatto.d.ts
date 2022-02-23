@@ -13,3 +13,6 @@ interface JQFuwattoFunction {
 }
 
 interface JQFuwatto extends JQFuwattoParmameter, JQFuwattoFunction {}
+interface JQuery {
+  fuwatto: JQFuwatto
+}
