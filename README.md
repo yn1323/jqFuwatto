@@ -54,13 +54,15 @@ $(someSelector).fuwatto({
    ```sh
    git clone git@github.com:yn1323/jqFuwatto.git
    cd jqFuwatto
-   npm i
+   npm install
    ```
 2. Commands
    - Launch develop mode: `npm run dev`
    - Build document(GitHub Page): `npm run build:doc`
    - Bundle modules: `npm run build:bundle`
    - Build document & Bundle modules: `npm run build`
+3. Static html, js test
+   - Open statc.html with Live Server
 
 ---
 
