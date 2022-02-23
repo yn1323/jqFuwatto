@@ -15,8 +15,16 @@ var __spreadValues = (a, b) => {
   return a;
 };
 var _a, _b;
-if ((_b = (_a = window == null ? void 0 : window.$) == null ? void 0 : _a.fn) == null ? void 0 : _b.fuwatto)
-  ;
+const test = ($2) => {
+  $2("#icons").fuwatto({ duration: 3e3 });
+  $2("#rightToLeft").fuwatto({ slide: "right-left" });
+  $2(".jqFuwattoAsClass").fuwatto({ slide: "left-right" });
+  $2("#doesnotExist").fuwatto();
+  $2("#doesnotExist").fuwatto({ slide: "top-bottom" });
+};
+if ((_b = (_a = window == null ? void 0 : window.$) == null ? void 0 : _a.fn) == null ? void 0 : _b.fuwatto) {
+  test(window.$);
+}
 var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
 var jquery = { exports: {} };
 /*!
