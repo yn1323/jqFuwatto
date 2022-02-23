@@ -13,13 +13,13 @@ jqFuwatto is jQuery plugin, enables to move element, images, or blocks moves "Fu
 ---
 
 ### How to use
-1. Paste jqFuwatto Script
+1. Load CDN or downloaded jqFuwatto
    ```html
      <head>
         <!-- Use CND -->
         <script src="https://raw.githubusercontent.com/yn1323/jqFuwatto/master/dist/jqFuwatto.umd.js" defer></script>
         <!-- Use downloaded module(https://github.com/yn1323/jqFuwatto/releases) -->
-        <script src="https://raw.githubusercontent.com/yn1323/jqFuwatto/master/dist/jqFuwatto.umd.js" defer></script>
+        <script src="jqFuwatto.umd.js" defer></script>
      </head>
    ```
 2. Call jqFuwatto after DOM gets ready
