@@ -23,7 +23,7 @@ jqFuwatto is jQuery plugin, enables to move element, images, or blocks moves "Fu
             crossorigin="anonymous"
         ></script>
         <!-- Use CND -->
-        <script src="https://raw.githubusercontent.com/yn1323/jqFuwatto/master/dist/jqFuwatto.umd.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/gh/yn1323/jqFuwatto@master/dist/jqFuwatto.umd.js" defer></script>
         <!-- Use downloaded module(https://github.com/yn1323/jqFuwatto/releases) -->
         <script src="jqFuwatto.umd.js" defer></script>
      </head>
