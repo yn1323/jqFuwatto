@@ -28,9 +28,21 @@ jqFuwatto is jQuery plugin, enables to move element, images, or blocks moves "Fu
    ```
 
 ### Options
+```js
+$(someSelector).fuwatto({
+   duration: 1000,
+   slde: 'right-left',
+   distance: 500,
+});
+```
 
+| Key      | Type     | Default | Description                                                                                              | 
+| -------- | -------- | ------- | -------------------------------------------------------------------------------------------------------- | 
+| duration | `number` | 2000    | Slide, show duration(ms)                                                                                 | 
+| side     | `string` | ''      | Way to slide.<br>'left-right', 'right-left', 'top-bottom', 'bottom-top' are accepted.<br>'' won't slide. | 
+| distance | `number` | 500     | Distance to slide the element.(px)                                                                       | 
 
-⚠️ Height is required
+⚠️ If using slide option, elemnt shoud have height & width.
 
 ---
 
