@@ -1,6 +1,5 @@
 import $ from 'jquery'
 import { DEFAULT_OPTIONS } from './options'
-import '../css/style.css'
 import { slideFromPosition } from './util'
 
 type ShowElement = {

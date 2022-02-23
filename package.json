@@ -3,12 +3,15 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc &&  vite build",
+    "dev": "vite -c config/vite.config-doc.ts",
+    "build": "npm run build:doc && npm run build:bundle",
+    "build:doc": "tsc &&  vite build -c config/vite.config-doc.ts",
+    "build:bundle": "tsc &&  vite build -c config/vite.config-bundle.ts",
     "preview": "vite preview"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.13",
+    "@types/node": "^17.0.19",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
     "eslint": "^8.9.0",
