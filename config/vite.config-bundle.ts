@@ -8,18 +8,9 @@ export default defineConfig({
     assetsDir: '',
     sourcemap: true,
     lib: {
-      entry: resolve(__dirname, '../src/js/index.ts'),
+      entry: resolve(__dirname, '../src/index.ts'),
       name: 'jqFuwatto',
       fileName: 'jqFuwatto',
     },
   },
-  // build: {
-  //   outDir: './dist',
-  //   rollupOptions: {
-  //     input: {
-  //       main: resolve(__dirname, '../src/js/index.ts'),
-  //       // nested: resolve(__dirname, 'nested/index.html')
-  //     },
-  //   },
-  // },
 })
