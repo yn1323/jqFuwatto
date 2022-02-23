@@ -74,7 +74,7 @@ const show = () => {
 }
 
 export const jqFuwatto = Object.assign<JQFuwattoFunction, JQFuwattoParmameter>(
-  function (this: JQuery, options = DEFAULT_OPTIONS) {
+  function (this: JQuery, options = DEFAULT_OPTIONS): any {
     options = {
       ...DEFAULT_OPTIONS,
       ...options,

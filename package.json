@@ -1,7 +1,23 @@
 {
   "name": "jqfuwatto",
-  "private": true,
-  "version": "0.0.1",
+  "version": "0.2.0",
+  "main": "dist/jqFuwatto.umd.js",
+  "types": "types/JQFuwatto.d.ts",
+  "description": "Plugin enables to move element, images, or blocks moves fluffy.",
+  "homepage": "https://github.com/yn1323/jqFuwatto#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yn1323/jqFuwatto.git"
+  },
+  "keywords": [
+    "jquery",
+    "scroll"
+  ],
+  "author": "ynatani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yn1323/jqFuwatto/issues"
+  },
   "scripts": {
     "dev": "vite -c config/vite.config-doc.ts",
     "build": "npm run build:doc && npm run build:bundle",

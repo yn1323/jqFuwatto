@@ -15,14 +15,8 @@ var __spreadValues = (a, b) => {
   return a;
 };
 var _a, _b;
-const test = ($2) => {
-  $2("#icons").fuwatto({ duration: 3e3 });
-  $2("#rightToLeft").fuwatto({ slide: "right-left" });
-  $2(".jqFuwattoAsClass").fuwatto({ slide: "left-right" });
-};
-if ((_b = (_a = window == null ? void 0 : window.$) == null ? void 0 : _a.fn) == null ? void 0 : _b.fuwatto) {
-  test(window.$);
-}
+if ((_b = (_a = window == null ? void 0 : window.$) == null ? void 0 : _a.fn) == null ? void 0 : _b.fuwatto)
+  ;
 var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
 var jquery = { exports: {} };
 /*!
@@ -5911,18 +5905,20 @@ var jquery = { exports: {} };
   });
 })(jquery);
 var $ = jquery.exports;
+const SLIDE_PATTTERNS = [
+  "",
+  "left-right",
+  "right-left",
+  "bottom-top",
+  "top-bottom"
+];
 const DEFAULT_OPTIONS = {
   duration: 2e3,
   slide: "",
   distance: 500
 };
-const SLIDE = ["left-right", "right-left", "bottom-top", "top-bottom"];
 const slideFromPosition = (options, originalPosition) => {
-  var _a2;
   const ret = { top: 0, left: 0 };
-  if (!SLIDE.includes((_a2 = options == null ? void 0 : options.slide) != null ? _a2 : "")) {
-    return ret;
-  }
   if (options.slide === "left-right") {
     ret.top = originalPosition.top;
     ret.left = originalPosition.left - options.distance;
@@ -5937,6 +5933,25 @@ const slideFromPosition = (options, originalPosition) => {
     ret.left = originalPosition.left;
   }
   return ret;
+};
+const TEMPLATE = "[jqFuwatto] Option Parameter error";
+const isNumber = (value) => typeof value === "number" && isFinite(value);
+const matchSlidePatterns = (value) => SLIDE_PATTTERNS.includes(value);
+const checkOptionError = ({
+  duration,
+  distance,
+  slide
+}) => {
+  if (!isNumber(duration) && duration < 0) {
+    return `${TEMPLATE} [duration]`;
+  }
+  if (!isNumber(distance) && distance < 0) {
+    return `${TEMPLATE} [distance]`;
+  }
+  if (!matchSlidePatterns(slide)) {
+    return `${TEMPLATE} [slide]`;
+  }
+  return "";
 };
 let showElement = [];
 let windowHeight = window.innerHeight;
@@ -5974,6 +5989,11 @@ const show = () => {
 };
 const jqFuwatto = Object.assign(function(options = DEFAULT_OPTIONS) {
   options = __spreadValues(__spreadValues({}, DEFAULT_OPTIONS), options);
+  const errMsg = checkOptionError(options);
+  if (errMsg) {
+    console.error(errMsg);
+    return this;
+  }
   this.each((_, elem) => {
     let clone = null;
     const position = $(elem).offset();
