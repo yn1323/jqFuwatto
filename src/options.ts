@@ -1,3 +1,13 @@
+import { JQFuwattoOptions } from 'types/JQFuwatto'
+
+export const SLIDE_PATTTERNS = [
+  '',
+  'left-right',
+  'right-left',
+  'bottom-top',
+  'top-bottom',
+] as const
+
 export const DEFAULT_OPTIONS: JQFuwattoOptions = {
   duration: 2000,
   slide: '',

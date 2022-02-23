@@ -1,13 +1,11 @@
-const SLIDE = ['left-right', 'right-left', 'bottom-top', 'top-bottom']
+import { JQFuwattoOptions } from 'types/JQFuwatto'
 
 export const slideFromPosition = (
   options: JQFuwattoOptions,
   originalPosition: JQueryCoordinates
 ) => {
   const ret = { top: 0, left: 0 }
-  if (!SLIDE.includes(options?.slide ?? '')) {
-    return ret
-  }
+
   if (options.slide === 'left-right') {
     ret.top = originalPosition.top
     ret.left = originalPosition.left - options.distance

@@ -1,6 +1,12 @@
 import $ from 'jquery'
+import {
+  JQFuwattoFunction,
+  JQFuwattoOptions,
+  JQFuwattoParmameter,
+} from 'types/JQFuwatto'
 import { DEFAULT_OPTIONS } from './options'
 import { slideFromPosition } from './util'
+import { checkOptionError } from './validation'
 
 type ShowElement = {
   id: number
@@ -68,13 +74,17 @@ const show = () => {
 }
 
 export const jqFuwatto = Object.assign<JQFuwattoFunction, JQFuwattoParmameter>(
-  function (this: JQuery, options = DEFAULT_OPTIONS): JQuery {
+  function (this: JQuery, options = DEFAULT_OPTIONS) {
     options = {
       ...DEFAULT_OPTIONS,
       ...options,
     } as JQFuwattoOptions
 
-    // validation
+    const errMsg = checkOptionError(options)
+    if (errMsg) {
+      console.error(errMsg)
+      return this
+    }
 
     this.each((_, elem) => {
       let clone: JQuery<HTMLElement> | null = null

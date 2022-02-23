@@ -1,6 +1,8 @@
+import { SLIDE_PATTTERNS } from 'src/options'
+
 type JQFuwattoParmameter = {
   duration?: number
-  slide?: '' | 'left-right' | 'right-left' | 'bottom-top' | 'top-bottom'
+  slide?: typeof SLIDE_PATTTERNS[number]
   distance?: number
 }
 
@@ -11,7 +13,3 @@ interface JQFuwattoFunction {
 }
 
 interface JQFuwatto extends JQFuwattoParmameter, JQFuwattoFunction {}
-
-interface JQuery {
-  fuwatto: JQFuwatto
-}
