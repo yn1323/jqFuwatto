@@ -1,4 +1,6 @@
 var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
 var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __propIsEnum = Object.prototype.propertyIsEnumerable;
@@ -14,11 +16,13 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 var _a, _b;
 const test = ($2) => {
+  const adjustment = { top: -3 };
   $2("#icons").fuwatto({ duration: 3e3 });
-  $2("#rightToLeft").fuwatto({ slide: "right-left" });
-  $2(".jqFuwattoAsClass").fuwatto({ slide: "left-right" });
+  $2("#rightToLeft").fuwatto({ slide: "right-left", adjustment });
+  $2(".jqFuwattoAsClass").fuwatto({ slide: "left-right", adjustment });
   $2("#doesnotExist").fuwatto();
   $2("#doesnotExist").fuwatto({ slide: "top-bottom" });
 };
@@ -5923,7 +5927,11 @@ const SLIDE_PATTTERNS = [
 const DEFAULT_OPTIONS = {
   duration: 2e3,
   slide: "",
-  distance: 500
+  distance: 500,
+  adjustment: {
+    top: 0,
+    left: 0
+  }
 };
 const slideFromPosition = (options, originalPosition) => {
   const ret = { top: 0, left: 0 };
@@ -5942,22 +5950,38 @@ const slideFromPosition = (options, originalPosition) => {
   }
   return ret;
 };
-const TEMPLATE = "[jqFuwatto] Option Parameter error";
+const TEMPLATE_ERROR = "[jqFuwatto] Option Parameter error";
+const TEMPLATE_WARN = "[jqFuwatto] Option Parameter warning";
 const isNumber = (value) => typeof value === "number" && isFinite(value);
 const matchSlidePatterns = (value) => SLIDE_PATTTERNS.includes(value);
 const checkOptionError = ({
   duration,
   distance,
-  slide
+  slide,
+  adjustment: { top, left }
 }) => {
   if (!isNumber(duration) && duration < 0) {
-    return `${TEMPLATE} [duration]`;
+    return `${TEMPLATE_ERROR} [duration]`;
   }
   if (!isNumber(distance) && distance < 0) {
-    return `${TEMPLATE} [distance]`;
+    return `${TEMPLATE_ERROR} [distance]`;
+  }
+  if (!isNumber(top)) {
+    return `${TEMPLATE_ERROR} [top]`;
+  }
+  if (!isNumber(left)) {
+    return `${TEMPLATE_ERROR} [left]`;
   }
   if (!matchSlidePatterns(slide)) {
-    return `${TEMPLATE} [slide]`;
+    return `${TEMPLATE_ERROR} [slide]`;
+  }
+  return "";
+};
+const checkOptionWarning = ({
+  height
+}) => {
+  if (height === 0) {
+    return `${TEMPLATE_WARN} [Set height is recommended]`;
   }
   return "";
 };
@@ -5967,13 +5991,12 @@ const fadeIn = ({ elem, options }) => {
   elem.hide().fadeIn(options.duration);
 };
 const slideIn = ({ elem, clone, options, originalInfo }) => {
-  var _a2;
   if (clone) {
     $("body").css({ "overflow-x": "hidden" });
     clone.hide().fadeIn(options.duration).animate({
       top: originalInfo.top,
       left: originalInfo.left
-    }, { duration: (_a2 = options.duration) != null ? _a2 : 1e3, queue: false });
+    }, { duration: options.duration, queue: false });
   }
   setTimeout(() => {
     elem.css({ visibility: "visible" });
@@ -5996,7 +6019,10 @@ const show = () => {
   }
 };
 const jqFuwatto = Object.assign(function(options = DEFAULT_OPTIONS) {
-  options = __spreadValues(__spreadValues({}, DEFAULT_OPTIONS), options);
+  const adjustment = __spreadValues(__spreadValues({}, DEFAULT_OPTIONS.adjustment), options.adjustment);
+  options = __spreadProps(__spreadValues(__spreadValues({}, DEFAULT_OPTIONS), options), {
+    adjustment
+  });
   const errMsg = checkOptionError(options);
   if (errMsg) {
     console.error(errMsg);
@@ -6009,13 +6035,18 @@ const jqFuwatto = Object.assign(function(options = DEFAULT_OPTIONS) {
       height: $(elem).height(),
       width: $(elem).width()
     };
+    const warnMsg = checkOptionWarning(size);
+    if (warnMsg) {
+      console.warn(elem);
+      console.warn(warnMsg);
+    }
     if (options.slide) {
       const slideFrom = slideFromPosition(options, position);
       clone = $(elem).clone(true, false).appendTo("body").css({
         display: "none",
         position: "absolute",
-        top: slideFrom.top,
-        left: slideFrom.left,
+        top: slideFrom.top + options.adjustment.top,
+        left: slideFrom.left + options.adjustment.left,
         width: size.width,
         height: size.height
       });
@@ -6027,14 +6058,15 @@ const jqFuwatto = Object.assign(function(options = DEFAULT_OPTIONS) {
       elem: $(elem),
       options,
       originalInfo: {
-        top: position.top,
-        left: position.left,
+        top: position.top + options.adjustment.top,
+        left: position.left + options.adjustment.left,
         height: size.height,
         width: size.width
       },
       clone,
       side: !!options.slide
     });
+    console.log(position);
   });
   show();
   return this;

@@ -6,7 +6,7 @@ import {
 } from 'types/JQFuwatto'
 import { DEFAULT_OPTIONS } from './options'
 import { slideFromPosition } from './util'
-import { checkOptionError } from './validation'
+import { checkOptionError, checkOptionWarning } from './validation'
 
 type ShowElement = {
   id: number
@@ -33,16 +33,13 @@ const fadeIn = ({ elem, options }: ShowElement) => {
 const slideIn = ({ elem, clone, options, originalInfo }: ShowElement) => {
   if (clone) {
     $('body').css({ 'overflow-x': 'hidden' })
-    clone
-      .hide()
-      .fadeIn(options.duration)
-      .animate(
-        {
-          top: originalInfo.top,
-          left: originalInfo.left,
-        },
-        { duration: options.duration ?? 1000, queue: false }
-      )
+    clone.hide().fadeIn(options.duration).animate(
+      {
+        top: originalInfo.top,
+        left: originalInfo.left,
+      },
+      { duration: options.duration, queue: false }
+    )
   }
   setTimeout(() => {
     elem.css({ visibility: 'visible' })
@@ -75,9 +72,14 @@ const show = () => {
 
 export const jqFuwatto = Object.assign<JQFuwattoFunction, JQFuwattoParmameter>(
   function (this: JQuery, options = DEFAULT_OPTIONS): any {
+    const adjustment = {
+      ...DEFAULT_OPTIONS.adjustment,
+      ...options.adjustment,
+    }
     options = {
       ...DEFAULT_OPTIONS,
       ...options,
+      adjustment,
     } as JQFuwattoOptions
 
     const errMsg = checkOptionError(options)
@@ -94,16 +96,25 @@ export const jqFuwatto = Object.assign<JQFuwattoFunction, JQFuwattoParmameter>(
         width: $(elem).width() as number,
       }
 
+      const warnMsg = checkOptionWarning(size)
+      if (warnMsg) {
+        console.warn(elem)
+        console.warn(warnMsg)
+      }
+
       if (options.slide) {
         const slideFrom = slideFromPosition(options, position)
-        clone = $(elem).clone(true, false).appendTo('body').css({
-          display: 'none',
-          position: 'absolute',
-          top: slideFrom.top,
-          left: slideFrom.left,
-          width: size.width,
-          height: size.height,
-        })
+        clone = $(elem)
+          .clone(true, false)
+          .appendTo('body')
+          .css({
+            display: 'none',
+            position: 'absolute',
+            top: slideFrom.top + options.adjustment.top,
+            left: slideFrom.left + options.adjustment.left,
+            width: size.width,
+            height: size.height,
+          })
         $(elem).css({ visibility: 'hidden' })
       }
 
@@ -113,14 +124,15 @@ export const jqFuwatto = Object.assign<JQFuwattoFunction, JQFuwattoParmameter>(
         elem: $(elem),
         options,
         originalInfo: {
-          top: position.top,
-          left: position.left,
+          top: position.top + options.adjustment.top,
+          left: position.left + options.adjustment.left,
           height: size.height,
           width: size.width,
         },
         clone: clone,
         side: !!options.slide,
       })
+      console.log(position)
     })
     show()
 
