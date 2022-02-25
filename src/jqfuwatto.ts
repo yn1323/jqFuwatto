@@ -6,7 +6,7 @@ import {
 } from 'types/JQFuwatto'
 import { DEFAULT_OPTIONS } from './options'
 import { slideFromPosition } from './util'
-import { checkOptionError } from './validation'
+import { checkOptionError, checkOptionWarning } from './validation'
 
 type ShowElement = {
   id: number
@@ -92,6 +92,12 @@ export const jqFuwatto = Object.assign<JQFuwattoFunction, JQFuwattoParmameter>(
       const size = {
         height: $(elem).height() as number,
         width: $(elem).width() as number,
+      }
+
+      const warnMsg = checkOptionWarning(size)
+      if (warnMsg) {
+        console.warn(elem)
+        console.warn(warnMsg)
       }
 
       if (options.slide) {
