@@ -39,6 +39,10 @@ $(jQuerySelector).fuwatto({
    duration: 1000,
    slde: 'right-left',
    distance: 500,
+   adjustment: {
+      top: 0,
+      left: 0
+   }
 });
 ```
 
@@ -47,6 +51,8 @@ $(jQuerySelector).fuwatto({
 | duration | `number` | 2000    | Slide, show duration(ms)                                                                                 | 
 | side     | `string` | ''      | Way to slide.<br>'left-right', 'right-left', 'top-bottom', 'bottom-top' are accepted.<br>'' won't slide. | 
 | distance | `number` | 500     | Distance to slide the element.(px)                                                                       | 
+| adjustment.top | `number` | 0     | Use manual adjustment when slidein image shift from original.(px)                                                                       | 
+| adjustment.left | `number` | 0     | Use manual adjustment when slidein image shift from original.(px)                                                                       | 
 
 ⚠️ If using slide option, element should have height & width.(Especially for image)
 

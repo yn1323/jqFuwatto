@@ -10,12 +10,19 @@ export const checkOptionError = ({
   duration,
   distance,
   slide,
+  adjustment: { top, left },
 }: JQFuwattoOptions) => {
   if (!isNumber(duration) && duration < 0) {
     return `${TEMPLATE_ERROR} [duration]`
   }
   if (!isNumber(distance) && distance < 0) {
     return `${TEMPLATE_ERROR} [distance]`
+  }
+  if (!isNumber(top)) {
+    return `${TEMPLATE_ERROR} [top]`
+  }
+  if (!isNumber(left)) {
+    return `${TEMPLATE_ERROR} [left]`
   }
   if (!matchSlidePatterns(slide)) {
     return `${TEMPLATE_ERROR} [slide]`
